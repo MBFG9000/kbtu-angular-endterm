@@ -1,6 +1,6 @@
 # kbtu-angular-endterm
 Repo for JS Angular endterm project
 
-# Used
+#Will be used
 Firebase
-Apis
+NodeJS Express Apis
