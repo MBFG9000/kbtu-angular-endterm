@@ -1,0 +1,114 @@
+{
+  "configVersion": 1,
+  "timestamp": 1765481822991,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/favicon.ico",
+        "/index.html",
+        "/main-OK7NNUHU.js",
+        "/manifest.webmanifest",
+        "/polyfills-5CFQRCPP.js",
+        "/styles-RBWDDX25.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/icons/icon-128x128.png",
+        "/icons/icon-144x144.png",
+        "/icons/icon-152x152.png",
+        "/icons/icon-192x192.png",
+        "/icons/icon-384x384.png",
+        "/icons/icon-512x512.png",
+        "/icons/icon-72x72.png",
+        "/icons/icon-96x96.png",
+        "/kolsay-image-2.jpg",
+        "/kolsay-image.jpg",
+        "/mountain.svg",
+        "/mountains-logo.svg",
+        "/sneaker-photo.jpg"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "icons",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "public-api",
+      "patterns": [
+        "https:\\/\\/express-nine-zeta\\.vercel\\.app\\/api\\/sneakers",
+        "https:\\/\\/picsum\\.photos\\/seed\\/sneaker-[^/]*\\/.*"
+      ],
+      "strategy": "performance",
+      "maxSize": 100,
+      "maxAge": 3600000,
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "version": 1
+    }
+  ],
+  "hashTable": {
+    "/favicon.ico": "03eeec8c181530fa23333795131f33907c6391b3",
+    "/icons/icon-128x128.png": "f912963bdc6d5a38d8f1dd0afbaab2ce8d657acb",
+    "/icons/icon-144x144.png": "b155fd5f2fd5d2ea7760721063003c4cd95fd783",
+    "/icons/icon-152x152.png": "eae6e0f0c8afb8aaae339e2a569b43e9238e5e6c",
+    "/icons/icon-192x192.png": "15c4180454633880d98674aa7394656196c91584",
+    "/icons/icon-384x384.png": "94a915751ef6c9282df9aea405ad679230631814",
+    "/icons/icon-512x512.png": "1de182f76f7329dfa8f9fcdd1fdcdd695bea6a99",
+    "/icons/icon-72x72.png": "aa88a6096bd973be7f6d7a5489bfa6bc2463f8c4",
+    "/icons/icon-96x96.png": "7fb8f59c30ce2ff12c700321a0b39e14b3dc8f95",
+    "/index.html": "7905f3b0fcc213a72f4cf61f59900172c838fdce",
+    "/kolsay-image-2.jpg": "3d0d534c208fe36b0542635e168bc9f778e9126c",
+    "/kolsay-image.jpg": "68a317f1a346de8f2b3bc8d52d84bef8a545ff8c",
+    "/main-OK7NNUHU.js": "e4ef1d1b886bd40dba4b1394839e2b72c88620af",
+    "/manifest.webmanifest": "1ff0423a71dd8a1c91f3a190fcaa29c8ee3010ea",
+    "/mountain.svg": "e4a3e8af51694da3ef836b0bbab440a101c21a9e",
+    "/mountains-logo.svg": "0d279f7b08a8ecc21b6ed195e6c52289ae6ed4e2",
+    "/polyfills-5CFQRCPP.js": "f2241e9a25858f895ce299d15f6f22e849e2fd72",
+    "/sneaker-photo.jpg": "beb50e8239d9728c9a6357248ac540bac7ed8752",
+    "/styles-RBWDDX25.css": "feabc04cae1afa0713f5a78f4dab37682a4a080b"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}

@@ -1,0 +1,144 @@
+<main class="main-page">
+  <section class="hero">
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <span class="hero__chip">
+        <i-lucide [img]="Sparkles" size="16"></i-lucide>
+        Seasonal tracker
+      </span>
+      <h1>Search, track, and discover anime without tab overload.</h1>
+      <p class="hero__desc">
+        AniFind keeps seasonal charts, ratings, and your watchlist in one place. Filter by genre,
+        mood, studio, or length and jump straight into what the community loves.
+      </p>
+      <div class="hero__cta">
+        <a routerLink="/items" class="btn btn--primary">
+          <i-lucide [img]="Search" size="18"></i-lucide>
+          Start searching
+        </a>
+        <button type="button" class="btn btn--ghost">
+          Random recommendation
+          <i-lucide [img]="Play" size="18"></i-lucide>
+        </button>
+      </div>
+      <div class="hero__metrics">
+        @for (metric of heroMetrics; track metric.label) {
+          <div class="metric">
+            <p class="metric__value">{{ metric.value }}</p>
+            <p class="metric__label">{{ metric.label }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="top-anime">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Top anime</p>
+        <h2>Highest rated right now</h2>
+      </div>
+    </div>
+    @if (topAnimeLoading$ | async) {
+      <div class="state-card">Fetching top picks…</div>
+    } @else if (topAnimeError$ | async; as err) {
+      <div class="state-card state-card--error">
+        Could not load anime. Try again later.
+      </div>
+    } @else if (topAnime$ | async; as topAnime) {
+      @if (!topAnime.length) {
+        <div class="state-card state-card--muted">No anime found.</div>
+      } @else {
+        <div class="top-anime__grid">
+          @for (anime of topAnime; track anime.mal_id) {
+            <article class="top-card">
+              <div class="top-card__cover">
+                <span class="top-card__rank">#{{ anime.rank ?? '—' }}</span>
+                <img [src]="anime.images?.jpg?.image_url || anime.images?.webp?.image_url || anime.image" [alt]="anime.title" loading="lazy" />
+              </div>
+              <div class="top-card__body">
+                <h3>{{ anime.title }}</h3>
+                <p class="top-card__genres">{{ anime.type || 'Anime' }} · {{ anime.year || 'TBA' }}</p>
+                <div class="top-card__meta">
+                  <span class="pill">Score {{ anime.score ?? '—' }}</span>
+                  <span class="pill pill--light">{{ anime.episodes || '?' }} eps</span>
+                </div>
+              </div>
+            </article>
+          }
+        </div>
+      }
+    }
+  </section>
+
+  <section class="featured">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Trending now</p>
+        <h2>Red-hot anime to queue next</h2>
+      </div>
+      <a routerLink="/items" class="link">
+        Explore catalog
+        <i-lucide [img]="ArrowUpRight" size="17"></i-lucide>
+      </a>
+    </div>
+    <div class="featured__grid">
+      @for (anime of featuredAnime; track anime.name) {
+        <article class="drop-card">
+          <span class="drop-card__tag">{{ anime.tag }}</span>
+          <img [src]="anime.image" [alt]="anime.name" loading="lazy" />
+          <h3>{{ anime.name }}</h3>
+          <p class="drop-card__accent">{{ anime.accent }}</p>
+          <div class="drop-card__footer">
+            <span class="meta">Score {{ anime.score }}</span>
+            <span class="ghost-link">{{ anime.genre }}</span>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="perks">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Why AniFind</p>
+        <h2>Designed for anime fans</h2>
+      </div>
+    </div>
+    <div class="perks__grid">
+      @for (perk of perks; track perk.title) {
+        <article class="perk-card">
+          <i-lucide [img]="perk.icon" size="26"></i-lucide>
+          <div>
+            <h3>{{ perk.title }}</h3>
+            <p>{{ perk.description }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="lookbook">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Spotlight</p>
+        <h2>Community-curated playlists</h2>
+      </div>
+      <a href="https://instagram.com" target="_blank" rel="noreferrer" class="link">
+        See all lists
+        <i-lucide [img]="ArrowUpRight" size="18"></i-lucide>
+      </a>
+    </div>
+    <div class="lookbook__grid">
+      @for (spot of lookbookSpots; track spot.title) {
+        <article class="look-card">
+          <img [src]="spot.image" [alt]="spot.title" loading="lazy" />
+          <div class="look-card__body">
+            <p class="eyebrow">{{ spot.title }}</p>
+            <p>{{ spot.description }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+</main>

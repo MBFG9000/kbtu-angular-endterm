@@ -1,0 +1,195 @@
+:host {
+  display: block;
+  background: radial-gradient(circle at top, rgba(248, 113, 113, 0.15), transparent 45%),
+    #fff7f7;
+  min-height: 100vh;
+  font-family: 'Arimo', sans-serif;
+}
+
+.sneakers-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+
+.catalog {
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 2rem;
+  border: 1px solid rgba(239, 68, 68, 0.12);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+}
+
+.catalog__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.catalog__side {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.catalog__chip {
+  background: rgba(239, 68, 68, 0.1);
+  color: #7f1d1d;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.search-field {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 999px;
+  padding: 0.2rem 0.8rem;
+  background: #fff;
+  color: #b91c1c;
+}
+
+.search-field input {
+  border: none;
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 0.45rem 0.2rem;
+  min-width: 200px;
+}
+
+.search-field input:focus {
+  outline: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.anime-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.state-card {
+  padding: 2rem;
+  border-radius: 20px;
+  background: #fff1f2;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  text-align: center;
+  font-weight: 600;
+  color: #7f1d1d;
+}
+
+.state-card--error {
+  background: #fee2e2;
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #b91c1c;
+}
+
+.state-card--muted {
+  background: #f8fafc;
+  border-color: rgba(15, 23, 42, 0.08);
+  color: #475569;
+}
+
+.anime-card {
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(239, 68, 68, 0.12);
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+}
+
+.anime-card__thumb {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  background: #0f172a;
+  overflow: hidden;
+}
+
+.anime-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.anime-card__rank {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(15, 23, 42, 0.85);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.anime-card__body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.anime-card__title {
+  margin: 0;
+  font-weight: 700;
+  color: #0f172a;
+  font-size: 1rem;
+}
+
+.anime-card__meta {
+  margin: 0;
+  color: #475569;
+  font-size: 0.9rem;
+}
+
+.anime-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.4rem;
+}
+
+.score {
+  font-weight: 700;
+  color: #b91c1c;
+}
+
+.ghost-link {
+  text-decoration: none;
+  color: #7f1d1d;
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .sneakers-page {
+    padding: 2rem 1.25rem;
+  }
+
+  .catalog {
+    padding: 1.5rem;
+  }
+}

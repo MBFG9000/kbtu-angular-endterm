@@ -1,0 +1,59 @@
+<section class="auth">
+  <div class="auth__container">
+    <div class="auth__intro">
+      <p class="eyebrow">AniFind access</p>
+      <h1>Login</h1>
+      <p>Pick up where you left off: continue watchlists, track simulcasts, and keep favorites synced.</p>
+    </div>
+
+    <div class="auth__card">
+      <div class="auth__head">
+        <p class="eyebrow">Welcome back</p>
+        <h2>Sign in</h2>
+        <p>Use the email you registered with. Your lists stay private and synced.</p>
+      </div>
+
+      <form class="auth__form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div *ngIf="errorMessage" class="alert">
+          {{ errorMessage }}
+        </div>
+        <!-- formControlName - связывает с нужным филдом -->
+        <label class="form-field">
+          <span>Email</span>
+          <input
+            type="email"
+            placeholder="you@example.com"
+            formControlName="email"
+            [class.invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+          />
+          <small *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+            Enter a valid email.
+          </small>
+        </label>
+
+        <label class="form-field">
+          <span>Password</span>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            formControlName="password"
+            [class.invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+          />
+          <small *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+            Password must be at least 6 characters.
+          </small>
+        </label>
+
+        <button type="submit" [disabled]="isSubmitting">
+          <span *ngIf="!isSubmitting">Log in</span>
+          <span *ngIf="isSubmitting">Logging in...</span>
+        </button>
+      </form>
+
+      <p class="auth__footer">
+        Don't have an account?
+        <a routerLink="/signup">Sign up</a>
+      </p>
+    </div>
+  </div>
+</section>

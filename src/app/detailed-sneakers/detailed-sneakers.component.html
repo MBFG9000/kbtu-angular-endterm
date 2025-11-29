@@ -1,0 +1,68 @@
+<section class="detail-page">
+  <button type="button" class="back-link" (click)="goBack()">← Back to items</button>
+
+  @if (loading) {
+    <div class="state-card">Loading anime details…</div>
+  }
+  @else if (notFound) {
+    <div class="state-card state-card--error">Anime not found.</div>
+  }
+  @else if (errorMessage) {
+    <div class="state-card state-card--error">{{ errorMessage }}</div>
+  }
+  @else if (anime) {
+    <div class="detail-card">
+      <div class="detail-card__media">
+        <img [src]="imageUrl()" [alt]="anime.title" />
+        <span class="status">
+          {{ anime.type || 'Anime' }} · {{ anime.year || 'TBA' }}
+        </span>
+      </div>
+
+      <div class="detail-card__content">
+        <p class="eyebrow">AniFind detail</p>
+        <h1>{{ anime.title }}</h1>
+        <p class="lead" *ngIf="anime.title_english">English: {{ anime.title_english }}</p>
+        <p class="detail-description">
+          {{ anime.synopsis || 'Synopsis coming soon.' }}
+        </p>
+
+        <div class="info-grid">
+          <div class="info-item">
+            <span>Score</span>
+            <strong>{{ anime.score ?? '—' }}</strong>
+          </div>
+          <div class="info-item">
+            <span>Rank</span>
+            <strong>#{{ anime.rank ?? '—' }}</strong>
+          </div>
+          <div class="info-item">
+            <span>Episodes</span>
+            <strong>{{ anime.episodes ?? 'TBA' }}</strong>
+          </div>
+          <div class="info-item">
+            <span>Season</span>
+            <strong>{{ (anime.season || '—') | titlecase }} {{ anime.year || '' }}</strong>
+          </div>
+          <div class="info-item">
+            <span>Rating</span>
+            <strong>{{ anime.rating || '—' }}</strong>
+          </div>
+          <div class="info-item">
+            <span>Status</span>
+            <strong>{{ anime.status || '—' }}</strong>
+          </div>
+          <div class="info-item">
+            <span>Studios</span>
+            <strong>{{ studioList() }}</strong>
+          </div>
+        </div>
+
+        <div class="actions">
+          <a [href]="anime.url" target="_blank" rel="noreferrer" class="btn">Open on MAL</a>
+          <a routerLink="/items" class="ghost-link">Return to catalog</a>
+        </div>
+      </div>
+    </div>
+  }
+</section>

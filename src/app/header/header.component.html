@@ -1,0 +1,96 @@
+<header class="header">
+  <div class="brand">
+    <div class="logo">
+      <i-lucide [img]="HandMetal" [size]="30" class="logo__icon"></i-lucide>
+      <div class="brand__copy">
+        <span class="logo__text">AniFind</span>
+        <small class="logo__subtitle">Search · Track · Watchlist</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav">
+    <nav class="main-nav">
+      <ul class="main-nav__list">
+        <li
+          class="main-nav__item"
+          routerLinkActive="main-nav__item--active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a routerLink="/home">Discover</a>
+        </li>
+
+        <li
+          class="main-nav__item"
+          routerLinkActive="main-nav__item--active"
+        >
+          <a routerLink="/about">About</a>
+        </li>
+
+        <li
+          class="main-nav__item"
+          routerLinkActive="main-nav__item--active"
+        >
+          <a routerLink="/items">Anime Library</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="actions">
+
+    @if (user$ | async; as user) {  <!--async подписывается на поток и берет значение-->
+      <!--as user создает переменную-->
+
+
+      <a
+        routerLink="/profile"
+        routerLinkActive="login-btn--active"
+        class="link-btn"
+      >
+        Profile
+      </a>
+      <!-- зачем тут [disabled]="isLoggingOut"  одному аллаху известно -->
+      <button 
+        type="button"
+        class="logout-btn"
+        (click)="logout()"
+        [disabled]="isLoggingOut"    
+      >
+        @if (!isLoggingOut) {
+          Logout
+        } @else {
+          Logging out...
+        }
+      </button>
+
+    } @else {
+
+      <a
+        routerLink="/login"
+        routerLinkActive="login-btn--active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="signup-btn"
+      >
+        Login
+      </a>
+
+      <a
+        routerLink="/signup"
+        routerLinkActive="login-btn--active"
+        class="signup-btn"
+      >
+        Sign up
+      </a>
+
+    }
+
+  </div>
+</header>
+
+@if (errorMessage) {
+  <div class="header-error-toast">
+    {{ errorMessage }}
+  </div>
+}
+

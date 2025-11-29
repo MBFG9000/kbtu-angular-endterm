@@ -1,0 +1,72 @@
+<section class="auth">
+  <div class="auth__container">
+    <div class="auth__intro">
+      <p class="eyebrow">Create account</p>
+      <h1>Join AniFind</h1>
+      <p>Build watchlists, follow simulcasts, and share playlists with friends—all in one dashboard.</p>
+    </div>
+
+    <div class="auth__card">
+      <div class="auth__head">
+        <p class="eyebrow">New here?</p>
+        <h2>Sign up</h2>
+        <p>Set your credentials to get started. You can edit your profile anytime.</p>
+      </div>
+
+      <form class="auth__form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <div *ngIf="errorMessage" class="alert">
+          {{ errorMessage }}
+        </div>
+
+        <label class="form-field">
+          <span>Email</span>
+          <input
+            type="email"
+            placeholder="you@example.com"
+            formControlName="email"
+            [class.invalid]="signupForm.get('email')?.invalid && signupForm.get('email')?.touched"
+          />
+          <small *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">
+            Enter a valid email.
+          </small>
+        </label>
+
+        <label class="form-field">
+          <span>Password</span>
+          <input
+            type="password"
+            placeholder="Create a strong password"
+            formControlName="password"
+            [class.invalid]="signupForm.get('password')?.invalid && signupForm.get('password')?.touched"
+          />
+          <small *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
+            Minimum 6 characters.
+          </small>
+        </label>
+
+        <label class="form-field">
+          <span>Confirm password</span>
+          <input
+            type="password"
+            placeholder="Repeat your password"
+            formControlName="confirmPassword"
+            [class.invalid]="signupForm.get('confirmPassword')?.invalid && signupForm.get('confirmPassword')?.touched"
+          />
+          <small *ngIf="signupForm.get('confirmPassword')?.invalid && signupForm.get('confirmPassword')?.touched">
+            Please confirm your password.
+          </small>
+        </label>
+
+        <button type="submit" [disabled]="isSubmitting">
+          <span *ngIf="!isSubmitting">Create account</span>
+          <span *ngIf="isSubmitting">Creating...</span>
+        </button>
+      </form>
+
+      <p class="auth__footer">
+        Already have an account?
+        <a routerLink="/login">Log in</a>
+      </p>
+    </div>
+  </div>
+</section>

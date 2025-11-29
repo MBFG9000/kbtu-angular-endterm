@@ -1,0 +1,61 @@
+<section class="sneakers-page">
+
+
+  <div class="catalog">
+    <div class="catalog__head">
+      <div>
+        <h2>Trending catalog</h2>
+        <p>{{ anime.length }} titles powered by Jikan.</p>
+      </div>
+      <div class="catalog__side">
+        <span class="catalog__chip">Jikan v4 · Live data</span>
+        <label class="search-field">
+          <span class="sr-only">Search anime</span>
+          <input
+            #searchInput
+            type="search"
+            [value]="searchQuery"
+            (input)="handleSearch(searchInput.value)"
+            placeholder="Search by title"
+          />
+        </label>
+      </div>
+    </div>
+
+    @if (loading) {
+      <div class="state-card">Loading anime…</div>
+    } @else if (errorMessage) {
+      <div class="state-card state-card--error">{{ errorMessage }}</div>
+    } @else if (!anime.length) {
+      <div class="state-card state-card--muted">
+        No anime found
+        @if (searchQuery) {
+          <span>&nbsp;for “{{ searchQuery }}”.</span>
+        } @else {
+          <span>. Try adjusting your search.</span>
+        }
+      </div>
+    } @else {
+      <div class="anime-grid">
+        @for (a of anime | slice:0:12; track a.mal_id) {
+          <article class="anime-card">
+            <div class="anime-card__thumb">
+              <img [src]="a?.images?.jpg?.large_image_url || 'https://static.crunchyroll.com/cr-acquisition/assets/img/start/hero/us-global/background-desktop.jpg'" [alt]="a.title" loading="lazy" />
+              <span class="anime-card__rank">#{{ a.rank ?? '—' }}</span>
+            </div>
+            <div class="anime-card__body">
+              <p class="anime-card__title">{{ a.title }}</p>
+              <p class="anime-card__meta">
+                {{ a.type || 'Anime' }} · {{ a.year || 'TBA' }} · {{ a.episodes || '?' }} eps
+              </p>
+              <div class="anime-card__footer">
+                <span class="score">Score {{ a.score ?? '—' }}</span>
+                <a [href]="a.url" target="_blank" rel="noreferrer" class="ghost-link">Details</a>
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+    }
+  </div>
+</section>

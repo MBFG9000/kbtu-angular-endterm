@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+/* @import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap'); */
+@import "tailwindcss";
+
+/* @link https://utopia.fyi/type/calculator?c=360,18,1.2,1240,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+
+@theme {
+  --color-bkg: #171819;
+  --color-softcyan: #B2F3F3;
+
+  --text-xs: clamp(0.7813rem, 0.7736rem + 0.0341vw, 0.8rem);      /* очень маленький текст */
+  --text-sm: clamp(0.9375rem, 0.9119rem + 0.1136vw, 1rem);        /* мелкий */
+  --text-base: clamp(1.125rem, 1.0739rem + 0.2273vw, 1.25rem);    /* базовый размер */
+  --text-lg: clamp(1.35rem, 1.2631rem + 0.3864vw, 1.5625rem);     /* немного больше */
+  --text-xl: clamp(1.62rem, 1.4837rem + 0.6057vw, 1.9531rem);     /* крупный */
+  --text-2xl: clamp(1.944rem, 1.7405rem + 0.9044vw, 2.4414rem);   /* ещё больше */
+  --text-3xl: clamp(2.3328rem, 2.0387rem + 1.3072vw, 3.0518rem);  /* заголовки */
+  --text-4xl: clamp(2.7994rem, 2.384rem + 1.8461vw, 3.8147rem);   /* очень крупные заголовки */
+
+  --spacing-default: 1rem;
+  --spacing-sm: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 5rem;
+  --spacing-2xl: 6rem;
+
+  --font-arimo:  "Arimo", sans-serif;
+}
+
+html, body {
+  margin: 0;
+  padding: 0; /* убирает горизонтальный скролл */
+}

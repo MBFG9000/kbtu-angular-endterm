@@ -1,0 +1,24 @@
+<article class="card" [routerLink]="['/items', sneaker.id]" tabindex="0">
+  <div class="card__media">
+    <img [src]="sneaker.imageUrl" [alt]="sneaker.name" loading="lazy" />
+    <span class="availability" [class.availability--out]="!sneaker.inStock">
+      {{ sneaker.inStock ? 'In stock' : 'Restocking' }}
+    </span>
+  </div>
+
+  <div class="card__body">
+    <p class="card__brand">{{ sneaker.brand }}</p>
+    <h3>{{ sneaker.name }}</h3>
+    <p class="card__meta">{{ sneaker.color }} · {{ sneaker.releaseYear }}</p>
+    <p class="card__description">Lightweight comfort curated by {{ sneaker.brand }}.</p>
+    <p class="card__sizes">
+      Sizes
+      <span>{{ sneaker.sizes?.length ? sneaker.sizes.join(' / ') : 'N/A' }}</span>
+    </p>
+  </div>
+
+  <div class="card__footer">
+    <span class="price">{{ sneaker.price | currency:'USD' }}</span>
+    <span class="view-link">View details →</span>
+  </div>
+</article>

@@ -1,0 +1,49 @@
+<section class="profile">
+  <div class="profile__container" *ngIf="user$ | async as user; else locked">
+    <div class="profile__hero">
+      <p class="eyebrow">Your space</p>
+      <h1>Profile</h1>
+      <p>Review your credentials and manage active sessions with SneakHead.</p>
+    </div>
+
+    <div class="profile__card">
+      <div class="profile__row">
+        <div>
+          <p class="label">Email</p>
+          <p class="value">{{ user.email }}</p>
+        </div>
+        <div>
+          <p class="label">UID</p>
+          <p class="value uid">{{ user.uid }}</p>
+        </div>
+      </div>
+
+      <div class="profile__row">
+        <div>
+          <p class="label">Display name</p>
+          <p class="value">{{ user.displayName || 'Not set' }}</p>
+        </div>
+        <div>
+          <p class="label">Status</p>
+          <p class="pill success">Authenticated</p>
+        </div>
+      </div>
+
+      <div class="profile__actions">
+        <button type="button" (click)="logout()" [disabled]="isLoggingOut">
+          <span *ngIf="!isLoggingOut">Logout</span>
+          <span *ngIf="isLoggingOut">Logging out...</span>
+        </button>
+        <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #locked>
+    <div class="locked">
+      <h2>Access restricted</h2>
+      <p>You need to be logged in to view this page.</p>
+      <a routerLink="/login">Return to login</a>
+    </div>
+  </ng-template>
+</section>
