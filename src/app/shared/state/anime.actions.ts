@@ -33,6 +33,32 @@ export const loadAnimeFailure = createAction(
   props<{ error: any }>()
 );
 
+// favorites
+export const loadFavorites = createAction('[Anime] Load Favorites');
+
+export const loadFavoritesSuccess = createAction(
+  '[Favorites] Load Favorites Success',
+  props<{ items: AnimeDetail[]; ids: number[] }>()
+);
+
+export const loadFavoritesFailure = createAction(
+  '[Anime] Load Favorites Failure',
+  props<{ error: any }>()
+);
+
+export const addFavorite = createAction(
+  '[Anime] Add Favorite',
+  props<{ id: number }>()
+);
+
+export const removeFavorite = createAction(
+  '[Anime] Remove Favorite',
+  props<{ id: number }>()
+);
+
+export const clearFavorites = createAction('[Anime] Clear Favorites');
+
+
 // UI / local actions (optional)
 export const clearAnimeList = createAction('[Anime] Clear Anime List');
 export const clearSelectedAnime = createAction('[Anime] Clear Selected Anime');

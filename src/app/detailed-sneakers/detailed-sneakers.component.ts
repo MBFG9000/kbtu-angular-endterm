@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { Subscription, map } from 'rxjs';
+import { Subscription, map, take } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as AnimeActions from '../shared/state/anime.actions';
 import { selectDetailsError, selectDetailsLoading, selectSelectedAnime } from '../shared/state/anime.selectors';
@@ -13,7 +13,7 @@ import { DataService } from '../data.service';
   selector: 'app-detailed-sneakers',
   imports: [CommonModule, RouterLink],
   templateUrl: './detailed-sneakers.component.html',
-  styleUrl: './detailed-sneakers.component.css'
+  styleUrls: ['./detailed-sneakers.component.css'] 
 })
 export class DetailedSneakersComponent implements OnInit, OnDestroy {
   anime?: AnimeDetail;
@@ -21,7 +21,7 @@ export class DetailedSneakersComponent implements OnInit, OnDestroy {
   errorMessage = '';
   notFound = false;
 
-  private subscription?: Subscription;
+  private subscription = new Subscription();
 
   constructor(
     private route: ActivatedRoute,
@@ -31,14 +31,17 @@ export class DetailedSneakersComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.subscription = new Subscription();
-
+    // Подписки на store (справа — держим синхронизацию с селекторами)
     this.subscription.add(
-      this.store.select(selectSelectedAnime).subscribe((anime) => (this.anime = anime ?? undefined))
+      this.store.select(selectSelectedAnime).subscribe((anime) => {
+        this.anime = anime ?? undefined;
+      })
     );
 
     this.subscription.add(
-      this.store.select(selectDetailsLoading).subscribe((isLoading) => (this.loading = isLoading))
+      this.store.select(selectDetailsLoading).subscribe((isLoading) => {
+        this.loading = isLoading;
+      })
     );
 
     this.subscription.add(
@@ -48,6 +51,10 @@ export class DetailedSneakersComponent implements OnInit, OnDestroy {
       })
     );
 
+    // Подписываемся на paramMap и при изменении id выполняем логику:
+    // 1) если store.selected уже содержит нужный id — ничего не диспатчим
+    // 2) если в dataService есть кэш — показываем его мгновенно
+    // 3) иначе — диспатчим loadAnime({ id })
     this.subscription.add(
       this.route.paramMap
         .pipe(
@@ -58,6 +65,7 @@ export class DetailedSneakersComponent implements OnInit, OnDestroy {
           map((id) => (Number.isNaN(id) ? null : id))
         )
         .subscribe((id) => {
+          // invalid id
           if (id === null) {
             this.anime = undefined;
             this.errorMessage = 'Anime not found.';
@@ -66,15 +74,37 @@ export class DetailedSneakersComponent implements OnInit, OnDestroy {
             return;
           }
 
+          // reset states
           this.errorMessage = '';
           this.notFound = false;
-          this.store.dispatch(AnimeActions.loadAnime({ id }));
+
+          // 1) сначала проверим, есть ли тот же selected в store
+          this.store.select(selectSelectedAnime).pipe(take(1)).subscribe((selected) => {
+            if (selected && selected.mal_id === id) {
+              // already loaded in store — компонент подпишется на selectSelectedAnime и покажет данные
+              return;
+            }
+
+            // 2) проверим кэш в DataService — если есть, покажем мгновенно (optimistic UI)
+            const cached = this.dataService.getFromCache?.(id);
+            if (cached) {
+              this.anime = cached;
+              this.loading = false;
+              // Не диспатчим loadAnime, так как cached уже содержит детали.
+              // Но если хочешь обновить данные с сервера, можешь диспатчить loadAnime здесь.
+              return;
+            }
+
+            // 3) ничего нет — диспатчим загрузку через NgRx
+            this.loading = true;
+            this.store.dispatch(AnimeActions.loadAnime({ id }));
+          });
         })
     );
   }
 
   ngOnDestroy(): void {
-    this.subscription?.unsubscribe();
+    this.subscription.unsubscribe();
   }
 
   goBack(): void {

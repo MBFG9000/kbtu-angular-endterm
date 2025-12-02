@@ -1,24 +1,23 @@
-<article class="card" [routerLink]="['/items', sneaker.id]" tabindex="0">
-  <div class="card__media">
-    <img [src]="sneaker.imageUrl" [alt]="sneaker.name" loading="lazy" />
-    <span class="availability" [class.availability--out]="!sneaker.inStock">
-      {{ sneaker.inStock ? 'In stock' : 'Restocking' }}
+<article class="anime-card" [routerLink]="['/items', anime.mal_id]">
+  <div class="anime-card__thumb">
+    <img [src]="anime?.images?.jpg?.large_image_url || 'https://static.crunchyroll.com/cr-acquisition/assets/img/start/hero/us-global/background-desktop.jpg'" [alt]="anime.title" loading="lazy" />
+    <span class="anime-card__rank" (click)="toggleFavourite($event)">
+      <i-lucide
+        [img]="Heart"
+        [size]="30"
+        class="like"
+        [ngClass]="{ active: isFavourite }"
+      ></i-lucide>
     </span>
   </div>
-
-  <div class="card__body">
-    <p class="card__brand">{{ sneaker.brand }}</p>
-    <h3>{{ sneaker.name }}</h3>
-    <p class="card__meta">{{ sneaker.color }} · {{ sneaker.releaseYear }}</p>
-    <p class="card__description">Lightweight comfort curated by {{ sneaker.brand }}.</p>
-    <p class="card__sizes">
-      Sizes
-      <span>{{ sneaker.sizes?.length ? sneaker.sizes.join(' / ') : 'N/A' }}</span>
+  <div class="anime-card__body">
+    <p class="anime-card__title">{{ anime.title }}</p>
+    <p class="anime-card__meta">
+      {{ anime.type || 'Anime' }} · {{ anime.year || 'TBA' }} · {{ anime.episodes || '?' }} eps
     </p>
-  </div>
-
-  <div class="card__footer">
-    <span class="price">{{ sneaker.price | currency:'USD' }}</span>
-    <span class="view-link">View details →</span>
+    <div class="anime-card__footer">
+      <span class="score">Score {{ anime.score ?? '—' }}</span>
+      <a [href]="anime.url" target="_blank" rel="noreferrer" class="ghost-link">Details</a>
+    </div>
   </div>
 </article>

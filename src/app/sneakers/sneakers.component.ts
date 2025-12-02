@@ -8,12 +8,13 @@ import * as AnimeActions from '../shared/state/anime.actions';
 import { AnimeItem } from '../shared/models/anime.model';
 import { DataService } from '../data.service';
 import { CommonModule } from '@angular/common';
+import { SneakerCardSmComponent } from '../sneaker-card-sm/sneaker-card-sm.component';
 
 
 @Component({
   standalone: true,
   selector: 'app-sneakers',
-  imports: [CommonModule],
+  imports: [CommonModule, SneakerCardSmComponent],
   templateUrl: './sneakers.component.html',
   styleUrl: './sneakers.component.css'
 })

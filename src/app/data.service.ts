@@ -1,8 +1,16 @@
+// src/app/data.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
+import { map, catchError, tap } from 'rxjs/operators';
 import { Sneaker } from './shared/models/sneakers.model';
-import { JikanListResponse, AnimeItem, AnimeDetail, JikanAnimeDetailResponse, PaginationInfo } from './shared/models/anime.model'
+import {
+  JikanListResponse,
+  AnimeItem,
+  AnimeDetail,
+  JikanAnimeDetailResponse,
+  PaginationInfo
+} from './shared/models/anime.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +19,17 @@ export class DataService {
   private readonly apiBaseUrl = 'https://api.jikan.moe';
   private readonly ApiUrl = `${this.apiBaseUrl}/v4`;
 
+  // ===== in-memory cache =====
+  private animeCache = new Map<number, AnimeDetail>();
+
   constructor(private readonly http: HttpClient) {}
 
   getTopAnime(page = 1, limit = 12): Observable<JikanListResponse<AnimeItem>> {
     const params = new HttpParams()
       .set('page', String(page))
       .set('limit', String(limit));
-    return this.http.get<JikanListResponse<AnimeItem>>(`${this.ApiUrl}/top/anime`, { params });
+    return this.http.get<JikanListResponse<AnimeItem>>(`${this.ApiUrl}/top/anime`, { params })
+      .pipe(catchError(this.handleError));
   }
 
   searchAnime(query: string, page = 1, limit = 25): Observable<JikanListResponse<AnimeItem>> {
@@ -32,15 +44,63 @@ export class DataService {
 
   /**
    * Get anime details by id: /v4/anime/{id}
-   * Возвращаем сразу AnimeDetail (res.data), т.к. Jikan отдаёт { data: {...} }.
+   * Uses in-memory cache to avoid duplicate HTTP calls.
+   * Returns Observable<AnimeDetail>.
    */
   getAnimeById(id: number): Observable<AnimeDetail> {
+    // return from cache synchronously if available
+    const cached = this.animeCache.get(id);
+    if (cached) {
+      return of(cached);
+    }
+
+    // otherwise fetch from API and cache result
     return this.http
-      .get<JikanAnimeDetailResponse>(`${this.apiBaseUrl}/anime/${id}`)
+      .get<JikanAnimeDetailResponse>(`${this.ApiUrl}/anime/${id}`)
       .pipe(
         map(res => res.data),
+        tap(detail => {
+          try {
+            if (detail && typeof detail.mal_id === 'number') {
+              this.animeCache.set(detail.mal_id, detail);
+            }
+          } catch (e) {
+            // fail silently on caching problems
+            console.warn('DataService: caching failed for id', id, e);
+          }
+        }),
         catchError(this.handleError)
       );
+  }
+
+  /**
+   * Возвращает синхронно объект из кэша или undefined
+   */
+  getFromCache(id: number): AnimeDetail | undefined {
+    return this.animeCache.get(id);
+  }
+
+  /**
+   * Проверяет наличие в кэше
+   */
+  hasInCache(id: number): boolean {
+    return this.animeCache.has(id);
+  }
+
+  /**
+   * Установить объект в кэш вручную (опционально можно использовать для prefetch)
+   */
+  setCache(id: number, detail: AnimeDetail) {
+    if (detail && typeof id === 'number') {
+      this.animeCache.set(id, detail);
+    }
+  }
+
+  /**
+   * Очистить кэш (для отладки или при необходимости)
+   */
+  clearCache() {
+    this.animeCache.clear();
   }
 
   /**
@@ -84,12 +144,11 @@ export class DataService {
     } else {
       // server-side
       message = `Server error: ${err.status} ${err.statusText || ''}`.trim();
-      if (err.error && typeof err.error === 'object' && err.error.message) {
-        message += ` - ${err.error.message}`;
+      if (err.error && typeof err.error === 'object' && (err.error as any).message) {
+        message += ` - ${(err.error as any).message}`;
       }
     }
     console.error('DataService error:', err);
     return throwError(() => ({ status: err.status, message }));
   }
 }
-

@@ -38,22 +38,7 @@
     } @else {
       <div class="anime-grid">
         @for (a of anime | slice:0:12; track a.mal_id) {
-          <article class="anime-card">
-            <div class="anime-card__thumb">
-              <img [src]="a?.images?.jpg?.large_image_url || 'https://static.crunchyroll.com/cr-acquisition/assets/img/start/hero/us-global/background-desktop.jpg'" [alt]="a.title" loading="lazy" />
-              <span class="anime-card__rank">#{{ a.rank ?? '—' }}</span>
-            </div>
-            <div class="anime-card__body">
-              <p class="anime-card__title">{{ a.title }}</p>
-              <p class="anime-card__meta">
-                {{ a.type || 'Anime' }} · {{ a.year || 'TBA' }} · {{ a.episodes || '?' }} eps
-              </p>
-              <div class="anime-card__footer">
-                <span class="score">Score {{ a.score ?? '—' }}</span>
-                <a [href]="a.url" target="_blank" rel="noreferrer" class="ghost-link">Details</a>
-              </div>
-            </div>
-          </article>
+          <app-sneaker-card-sm [anime]="a"></app-sneaker-card-sm>
         }
       </div>
     }

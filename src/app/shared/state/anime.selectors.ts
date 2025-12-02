@@ -23,3 +23,8 @@ export const selectLimit = createSelector(selectAnimeState, s => s.limit);
 export const selectHasNextPage = createSelector(selectPagination, p => !!p?.has_next_page);
 export const selectLastVisiblePage = createSelector(selectPagination, p => p?.last_visible_page ?? 1);
 export const selectTotalItems = createSelector(selectPagination, p => p?.items.total ?? 0);
+
+export const selectFavoritesIds = createSelector(selectAnimeState, s => s.favoritesIds);
+export const selectFavoritesDetails = createSelector(selectAnimeState, s => s.favoritesDetails);
+export const selectFavoritesLoading = createSelector(selectAnimeState, s => s.favoritesLoading);
+export const selectFavoritesError = createSelector(selectAnimeState, s => s.favoritesError);

@@ -51,7 +51,7 @@
       } @else {
         <div class="top-anime__grid">
           @for (anime of topAnime; track anime.mal_id) {
-            <article class="top-card">
+            <article class="top-card" [routerLink]="['/items', anime.mal_id]">
               <div class="top-card__cover">
                 <span class="top-card__rank">#{{ anime.rank ?? '—' }}</span>
                 <img [src]="anime.images?.jpg?.image_url || anime.images?.webp?.image_url || anime.image" [alt]="anime.title" loading="lazy" />
@@ -71,7 +71,7 @@
     }
   </section>
 
-  <section class="featured">
+  <!-- <section class="featured">
     <div class="section-head">
       <div>
         <p class="eyebrow">Trending now</p>
@@ -141,4 +141,4 @@
       }
     </div>
   </section>
-</main>
+</main> -->

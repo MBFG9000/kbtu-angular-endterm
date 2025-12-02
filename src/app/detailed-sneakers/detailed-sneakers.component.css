@@ -1,6 +1,6 @@
 :host {
   display: block;
-  background: linear-gradient(135deg, rgba(14, 165, 233, 0.08), transparent 40%), #f8fbff;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.08), transparent 40%), #fff8f8;
   min-height: 100vh;
   font-family: 'Arimo', sans-serif;
 }
@@ -14,7 +14,7 @@
 .back-link {
   border: none;
   background: transparent;
-  color: #0ea5e9;
+  color: #7f1d1d;
   font-weight: 600;
   cursor: pointer;
   padding: 0;
@@ -25,12 +25,14 @@
   text-decoration: underline;
 }
 
+/* CARD */
+
 .detail-card {
   margin-top: 1.5rem;
   background: #fff;
   border-radius: 32px;
-  border: 1px solid rgba(14, 165, 233, 0.15);
-  box-shadow: 0 30px 60px rgba(15, 118, 187, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.18);
+  box-shadow: 0 30px 60px rgba(239, 68, 68, 0.15);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
@@ -38,7 +40,7 @@
 }
 
 .detail-card__media {
-  background: radial-gradient(circle, rgba(14, 165, 233, 0.22), rgba(255, 255, 255, 0.9));
+  background: radial-gradient(circle, rgba(244, 63, 94, 0.22), rgba(255, 255, 255, 0.9));
   border-radius: 24px;
   padding: 2rem;
   position: relative;
@@ -49,19 +51,21 @@
   object-fit: contain;
 }
 
+/* STATUS BADGES */
+
 .status {
   position: absolute;
   top: 1.5rem;
   left: 1.5rem;
   padding: 0.45rem 1rem;
   border-radius: 999px;
-  background: rgba(34, 197, 94, 0.2);
-  color: #166534;
+  background: rgba(52, 211, 153, 0.25);
+  color: #065f46;
   font-weight: 600;
 }
 
 .status--out {
-  background: rgba(248, 113, 113, 0.25);
+  background: rgba(239, 68, 68, 0.25);
   color: #b91c1c;
 }
 
@@ -70,22 +74,26 @@
   font-size: clamp(2rem, 3vw, 2.8rem);
 }
 
+/* PRICE (теперь красная стилистика) */
+
 .price {
   font-size: 1.6rem;
-  color: #0ea5e9;
+  color: #ef4444;
   font-weight: 700;
   margin: 0.75rem 0 1rem;
 }
 
 .lead {
-  color: #1f2937;
+  color: #7f1d1d;
   margin-bottom: 1.5rem;
 }
 
 .detail-description {
-  color: #475569;
+  color: #b91c1c;
   margin: -0.5rem 0 1.5rem;
 }
+
+/* INFO GRID */
 
 .info-grid {
   display: grid;
@@ -94,7 +102,7 @@
 }
 
 .info-item {
-  background: #eff6ff;
+  background: #fee2e2;
   border-radius: 16px;
   padding: 1rem;
 }
@@ -102,13 +110,15 @@
 .info-item span {
   display: block;
   font-size: 0.85rem;
-  color: #475569;
+  color: #b91c1c;
 }
 
 .info-item strong {
   font-size: 1.1rem;
-  color: #0f172a;
+  color: #7f1d1d;
 }
+
+/* SIZES */
 
 .sizes {
   margin-top: 2rem;
@@ -124,14 +134,16 @@
 .size-list span {
   padding: 0.4rem 0.85rem;
   border-radius: 999px;
-  background: #e0f2fe;
+  background: #fecaca;
   font-weight: 600;
-  color: #0f172a;
+  color: #7f1d1d;
 }
 
 .size-list--empty {
-  color: #475569;
+  color: #b91c1c;
 }
+
+/* ACTION BUTTONS — красная градиентная кнопка */
 
 .actions {
   margin-top: 2rem;
@@ -142,7 +154,7 @@
 }
 
 .btn {
-  background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+  background: linear-gradient(135deg, #ef4444, #f87171);
   border: none;
   color: #fff;
   border-radius: 999px;
@@ -154,28 +166,30 @@
 
 .btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(14, 165, 233, 0.2);
+  box-shadow: 0 10px 20px rgba(239, 68, 68, 0.2);
 }
 
 .ghost-link {
   text-decoration: none;
   font-weight: 600;
-  color: #0f172a;
+  color: #7f1d1d;
 }
+
+/* STATE CARDS */
 
 .state-card {
   margin-top: 2rem;
   padding: 2rem;
   border-radius: 24px;
-  background: #eff6ff;
-  border: 1px solid rgba(14, 165, 233, 0.25);
+  background: #fee2e2;
+  border: 1px solid rgba(239, 68, 68, 0.3);
   text-align: center;
   font-weight: 600;
 }
 
 .state-card--error {
-  background: #fee2e2;
-  border-color: rgba(239, 68, 68, 0.3);
+  background: #fecaca;
+  border-color: rgba(239, 68, 68, 0.4);
   color: #b91c1c;
 }
 

@@ -13,7 +13,7 @@
   @else if (anime) {
     <div class="detail-card">
       <div class="detail-card__media">
-        <img [src]="imageUrl()" [alt]="anime.title" />
+        <img [src]="anime.images.jpg.large_image_url" [alt]="anime.title" />
         <span class="status">
           {{ anime.type || 'Anime' }} · {{ anime.year || 'TBA' }}
         </span>
