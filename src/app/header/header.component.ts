@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { LucideAngularModule, HandMetal } from 'lucide-angular';
+import { LucideAngularModule, PawPrint } from 'lucide-angular';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../auth.service';
 import { Observable } from 'rxjs';
@@ -15,7 +15,7 @@ import { User } from '@angular/fire/auth';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  readonly HandMetal = HandMetal; // i-lucide icon
+  readonly PawPrint = PawPrint; // i-lucide icon
   readonly user$!: Observable<User | null>;
   isLoggingOut = false;
   errorMessage = '';
