@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1765481822991,
+  "timestamp": 1764763260416,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main-OK7NNUHU.js",
+        "/main-DMKHWWXQ.js",
         "/manifest.webmanifest",
         "/polyfills-5CFQRCPP.js",
         "/styles-RBWDDX25.css"
@@ -28,6 +28,7 @@
         "ignoreVary": true
       },
       "urls": [
+        "/anime-about.jpg",
         "/icons/icon-128x128.png",
         "/icons/icon-144x144.png",
         "/icons/icon-152x152.png",
@@ -40,6 +41,9 @@
         "/kolsay-image.jpg",
         "/mountain.svg",
         "/mountains-logo.svg",
+        "/paw-print.svg",
+        "/screenshot-favorite.png",
+        "/screenshot-landing.png",
         "/sneaker-photo.jpg"
       ],
       "patterns": []
@@ -72,6 +76,7 @@
     }
   ],
   "hashTable": {
+    "/anime-about.jpg": "8c5de80448352b26edf3382bde349e7f9bc15033",
     "/favicon.ico": "03eeec8c181530fa23333795131f33907c6391b3",
     "/icons/icon-128x128.png": "f912963bdc6d5a38d8f1dd0afbaab2ce8d657acb",
     "/icons/icon-144x144.png": "b155fd5f2fd5d2ea7760721063003c4cd95fd783",
@@ -81,14 +86,17 @@
     "/icons/icon-512x512.png": "1de182f76f7329dfa8f9fcdd1fdcdd695bea6a99",
     "/icons/icon-72x72.png": "aa88a6096bd973be7f6d7a5489bfa6bc2463f8c4",
     "/icons/icon-96x96.png": "7fb8f59c30ce2ff12c700321a0b39e14b3dc8f95",
-    "/index.html": "7905f3b0fcc213a72f4cf61f59900172c838fdce",
+    "/index.html": "3f830fec16ce660384f4ef789496a89c895e2fc4",
     "/kolsay-image-2.jpg": "3d0d534c208fe36b0542635e168bc9f778e9126c",
     "/kolsay-image.jpg": "68a317f1a346de8f2b3bc8d52d84bef8a545ff8c",
-    "/main-OK7NNUHU.js": "e4ef1d1b886bd40dba4b1394839e2b72c88620af",
+    "/main-DMKHWWXQ.js": "f95b9a53b608fe3e994b0062be3b62ef6e230100",
     "/manifest.webmanifest": "1ff0423a71dd8a1c91f3a190fcaa29c8ee3010ea",
     "/mountain.svg": "e4a3e8af51694da3ef836b0bbab440a101c21a9e",
     "/mountains-logo.svg": "0d279f7b08a8ecc21b6ed195e6c52289ae6ed4e2",
+    "/paw-print.svg": "eb6692f5e9fea665c6f2ed557155a8262af067b5",
     "/polyfills-5CFQRCPP.js": "f2241e9a25858f895ce299d15f6f22e849e2fd72",
+    "/screenshot-favorite.png": "27919c9935309c248af889f455d7f49094565d57",
+    "/screenshot-landing.png": "6e725e6cddc50f23aec4f2d9a8d13f55d85b97cb",
     "/sneaker-photo.jpg": "beb50e8239d9728c9a6357248ac540bac7ed8752",
     "/styles-RBWDDX25.css": "feabc04cae1afa0713f5a78f4dab37682a4a080b"
   },

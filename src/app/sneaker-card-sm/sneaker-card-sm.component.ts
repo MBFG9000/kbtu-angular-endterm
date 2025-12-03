@@ -1,12 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { CurrencyPipe, NgClass } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { AnimeItem } from '../shared/models/anime.model';
+import { AnimeDetail, AnimeItem } from '../shared/models/anime.model';
 import { LucideAngularModule, Heart } from 'lucide-angular';
 import { Store } from '@ngrx/store';
 import { selectFavoritesIds } from '../shared/state/anime.selectors';
 import * as AnimeActions from '../shared/state/anime.actions';
 import { FavoritesService } from '../favourite.service';
+
+
 @Component({
   standalone: true,
   selector: 'app-sneaker-card-sm',
@@ -19,7 +21,7 @@ export class SneakerCardSmComponent {
 
   readonly Heart = Heart; 
 
-  @Input() anime!: AnimeItem;
+  @Input() anime!: AnimeItem | AnimeDetail;
 
   fallback = 'https://static.crunchyroll.com/cr-acquisition/assets/img/start/hero/us-global/background-desktop.jpg';
 

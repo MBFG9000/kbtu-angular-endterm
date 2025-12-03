@@ -1,0 +1,32 @@
+<section class="favorites-page">
+  <div class="favorites-panel">
+
+    @if (loading$ | async) {
+      <div class="state-card">Loading favourites…</div>
+    }
+
+    @if (!(loading$ | async)) {
+
+      @if ((favorites$ | async)?.length === 0) {
+        <div class="state-card state-card--empty">
+          No favourites yet — start liking anime from the catalog!
+        </div>
+      }
+
+      @if (((favorites$ | async) ?? []).length > 0) {
+        <div class="favorites-grid">
+
+          @for (item of favorites$ | async; track item.mal_id) {
+            <app-sneaker-card-sm
+              class="fav-card"
+              [anime]="item">
+            </app-sneaker-card-sm>
+          }
+
+        </div>
+      }
+
+    }
+
+  </div>
+</section>

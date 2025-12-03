@@ -1,0 +1,51 @@
+:host {
+  display: block;
+  background: radial-gradient(circle at top, rgba(248, 113, 113, 0.15), transparent 45%),
+    #fff7f7;
+  min-height: 100vh;
+  font-family: 'Arimo', sans-serif;
+}
+
+.favorites-page {
+  min-height: 100vh;
+  padding: 3rem 1.5rem;
+  background: radial-gradient(circle at 12% 5%, rgba(244, 63, 94, 0.12), transparent 40%),
+              radial-gradient(circle at 80% 0%, rgba(244, 63, 94, 0.08), transparent 45%),
+              #fff5f6;
+  display: flex;
+  justify-content: center;
+}
+
+.favorites-panel {
+  max-width: 1100px;
+  width: 100%;
+}
+
+.state-card {
+  padding: 2rem;
+  text-align: center;
+  background: #fff0f2;
+  border-radius: 20px;
+  border: 1px solid rgba(244, 63, 94, 0.3);
+  font-weight: 700;
+  color: #b91c1c;
+  margin-top: 2rem;
+}
+
+.state-card--empty {
+  color: #7f1d1d;
+}
+
+.favorites-grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+  justify-items: center; /* центрует карточки внутри грида */
+  width: 100%;
+}
+
+.fav-card {
+  width: 100%;
+  max-width: 260px;
+}
