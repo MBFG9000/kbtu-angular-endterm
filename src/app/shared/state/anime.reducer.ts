@@ -146,4 +146,10 @@ export const animeReducer = createReducer(
     favoritesDetails: []
   })),
 
+  on(AnimeActions.removeFavorite, (state, { id }) => ({
+  ...state,
+  favoritesIds: state.favoritesIds.filter(x => x !== id),
+  favoritesDetails: state.favoritesDetails.filter(a => a.mal_id !== id)
+})),
+
 );

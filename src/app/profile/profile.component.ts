@@ -15,7 +15,7 @@ import { User } from '@angular/fire/auth';
 })
 export class ProfileComponent {
   readonly user$!: Observable<User | null>;
-  isLoggingOut = false;
+  isLoggingOut = false; 
   errorMessage = '';
 
   constructor(private readonly authService: AuthService, private readonly router: Router) {

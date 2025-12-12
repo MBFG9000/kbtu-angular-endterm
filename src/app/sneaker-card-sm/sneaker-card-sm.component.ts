@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CurrencyPipe, NgClass } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { AnimeDetail, AnimeItem } from '../shared/models/anime.model';
@@ -22,6 +22,8 @@ export class SneakerCardSmComponent {
   readonly Heart = Heart; 
 
   @Input() anime!: AnimeItem | AnimeDetail;
+  @Output() removed = new EventEmitter<number>();
+  
 
   fallback = 'https://static.crunchyroll.com/cr-acquisition/assets/img/start/hero/us-global/background-desktop.jpg';
 
@@ -49,6 +51,7 @@ this.favService.favoritesIds$.subscribe(ids => {
 
     if (this.isFavourite) {
       this.store.dispatch(AnimeActions.removeFavorite({ id: this.anime.mal_id }));
+      this.removed.emit(this.anime.mal_id);
     } else {
       this.store.dispatch(AnimeActions.addFavorite({ id: this.anime.mal_id }));
     }

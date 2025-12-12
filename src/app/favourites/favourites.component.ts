@@ -29,4 +29,8 @@ export class FavouritesComponent implements OnInit {
     this.favorites$ = this.store.select(selectFavoritesDetails);
     this.loading$ = this.store.select(selectFavoritesLoading);
   }
+
+  onRemoved(id: number) {
+  this.store.dispatch(AnimeActions.removeFavorite({ id }));
+  }
 }

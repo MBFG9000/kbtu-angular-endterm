@@ -31,23 +31,23 @@
       "installMode": "lazy",
       "updateMode": "prefetch",
       "resources": {
-        "files": [
-          "/icons/**"
-        ]
+        "files": [ "/icons/**" ]
       }
     }
   ],
   "dataGroups": [
     {
-      "name": "public-api",
+      "name": "jikan-api",
       "urls": [
-        "https://express-nine-zeta.vercel.app/api/sneakers",
-        "https://picsum.photos/seed/sneaker-*/**"
+        "https://api.jikan.moe/v4/top/**",
+        "https://api.jikan.moe/v4/anime/**",
+        "https://api.jikan.moe/v4/**"
       ],
       "cacheConfig": {
-        "maxSize": 100,
-        "maxAge": "1h",
-        "strategy": "performance"  
+        "maxSize": 200,
+        "maxAge": "1d",
+        "strategy": "freshness",
+        "timeout": "3000"
       }
     }
   ]

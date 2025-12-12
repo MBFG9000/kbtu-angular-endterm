@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1764763260416,
+  "timestamp": 1764755928856,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main-DMKHWWXQ.js",
+        "/main-VUSOJQ53.js",
         "/manifest.webmanifest",
         "/polyfills-5CFQRCPP.js",
         "/styles-RBWDDX25.css"
@@ -61,14 +61,16 @@
   ],
   "dataGroups": [
     {
-      "name": "public-api",
+      "name": "jikan-api",
       "patterns": [
-        "https:\\/\\/express-nine-zeta\\.vercel\\.app\\/api\\/sneakers",
-        "https:\\/\\/picsum\\.photos\\/seed\\/sneaker-[^/]*\\/.*"
+        "https:\\/\\/api\\.jikan\\.moe\\/v4\\/top\\/.*",
+        "https:\\/\\/api\\.jikan\\.moe\\/v4\\/anime\\/.*",
+        "https:\\/\\/api\\.jikan\\.moe\\/v4\\/.*"
       ],
-      "strategy": "performance",
-      "maxSize": 100,
-      "maxAge": 3600000,
+      "strategy": "freshness",
+      "maxSize": 200,
+      "maxAge": 86400000,
+      "timeoutMs": 0,
       "cacheQueryOptions": {
         "ignoreVary": true
       },
@@ -86,10 +88,10 @@
     "/icons/icon-512x512.png": "1de182f76f7329dfa8f9fcdd1fdcdd695bea6a99",
     "/icons/icon-72x72.png": "aa88a6096bd973be7f6d7a5489bfa6bc2463f8c4",
     "/icons/icon-96x96.png": "7fb8f59c30ce2ff12c700321a0b39e14b3dc8f95",
-    "/index.html": "3f830fec16ce660384f4ef789496a89c895e2fc4",
+    "/index.html": "da98dfd9d61d3e160dcbd6e87969584cc90e01bd",
     "/kolsay-image-2.jpg": "3d0d534c208fe36b0542635e168bc9f778e9126c",
     "/kolsay-image.jpg": "68a317f1a346de8f2b3bc8d52d84bef8a545ff8c",
-    "/main-DMKHWWXQ.js": "f95b9a53b608fe3e994b0062be3b62ef6e230100",
+    "/main-VUSOJQ53.js": "e94327eb601aade8495fb08ba1354cb361aa7aca",
     "/manifest.webmanifest": "1ff0423a71dd8a1c91f3a190fcaa29c8ee3010ea",
     "/mountain.svg": "e4a3e8af51694da3ef836b0bbab440a101c21a9e",
     "/mountains-logo.svg": "0d279f7b08a8ecc21b6ed195e6c52289ae6ed4e2",

@@ -51,7 +51,7 @@ export class DataService {
     // return from cache synchronously if available
     const cached = this.animeCache.get(id);
     if (cached) {
-      return of(cached);
+      return of(cached); //сделать поток, который просто вернёт это value
     }
 
     // otherwise fetch from API and cache result
@@ -114,9 +114,9 @@ export class DataService {
 
     // предпочтение: small_image_url -> image_url -> large_image_url
     return (
-      jpg?.small_image_url ??
-      jpg?.image_url ??
       jpg?.large_image_url ??
+      jpg?.image_url ??
+      jpg?.small_image_url ??
       webp?.small_image_url ??
       webp?.image_url ??
       webp?.large_image_url ??
